@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "654691119096",
+    "firebase_url": "https://rubia-8772e-default-rtdb.firebaseio.com",
+    "project_id": "rubia-8772e",
+    "storage_bucket": "rubia-8772e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654691119096:android:c900e432f3cd37261bb00d",
+        "android_client_info": {
+          "package_name": "com.example.authentication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnttLjQQdTv-CU4q2CS_ifPh9xrCm-7gc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654691119096:android:52723438e1a691661bb00d",
+        "android_client_info": {
+          "package_name": "com.example.practices"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnttLjQQdTv-CU4q2CS_ifPh9xrCm-7gc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

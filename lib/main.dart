@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:practices/view/example_screens/cart_stack.dart';
-import 'package:practices/view/example_screens/image_slider.dart';
-import 'package:practices/view/interview/sos_page.dart';
-import 'package:practices/view/login_list.dart';
-import 'package:practices/view/profile/categories.dart';
-import 'package:practices/view/profile/post_products.dart';
-import 'package:practices/view/profile/products_view.dart';
-import 'package:practices/view/profile/profile.dart';
-import 'package:practices/view/services_list.dart';
-import 'package:practices/view/sportfy_songs_List.dart';
+import 'package:practices/view/face_recagnice_app/Regester_page.dart';
+import 'package:practices/view/face_recagnice_app/camera_page.dart';
+import 'package:practices/view/interview/bottom_navbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'view/interview/bottom_nav.dart';
-import 'view/profile/notificaton.dart';
-
+import 'view/face_recagnice_app/Button_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,36 +14,160 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Dio Example',
+      title: 'Camera App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      // home: BottomNavBar(), //impo
-      // home: ServicesList(),
-      // home : LoginList(),
-      // home: SongsList(),
-      // home: ProfilePage(),
-      // home: Products(),
-      // home: CategoriesPage(),
+      // home: ButtonPage(),
 
-      // home:PostProductScreen(),
-      // home: BottomNavBar()
-      //   home: CategoriesPage1(),
-      // home: Notification_page(),
-
-      // home: ImagePage(),
-       home:  cardStack(),
-
-       // home: SosPage()
-
-
-
-
-
+      home: FutureBuilder<bool>(
+        future: _isRegistered(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasData && snapshot.data == true) {
+            return CameraScreen();
+          } else {
+            return Register_page();
+          }
+        },
+      ),
     );
   }
+  Future<bool> _isRegistered() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? name = prefs.getString('name');
+    return name != null;
+  }
 }
+
+
+
+
+
+
+
+
+
+// import 'dart:async';
+// import 'dart:io';
+// import 'package:flutter/material.dart';
+// import 'package:image_picker/image_picker.dart';
+// import 'package:path_provider/path_provider.dart';
+// import 'package:practices/view/face_app/db_helper.dart';
+//
+// void main() {
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Image Storage App',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: ImageCaptureScreen(),
+//     );
+//   }
+// }
+//
+// class ImageCaptureScreen extends StatefulWidget {
+//   @override
+//   _ImageCaptureScreenState createState() => _ImageCaptureScreenState();
+// }
+//
+// class _ImageCaptureScreenState extends State<ImageCaptureScreen> {
+//   final ImagePicker _picker = ImagePicker();
+//   final DbHelper _dbHelper = DbHelper();
+//   List<String> _imagePaths = [];
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _loadImages();
+//   }
+//
+//   Future<void> _loadImages() async {
+//     final images = await _dbHelper.getImages();
+//     setState(() {
+//       _imagePaths = images.map((image) => image['imagePath'] as String).toList();
+//     });
+//   }
+//
+//   Future<void> _captureImage() async {
+//     final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+//     if (image != null) {
+//       await _dbHelper.insertImage(image.path);
+//       _loadImages();
+//     }
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Capture and Store Images'),
+//       ),
+//       body: Column(
+//         children: [
+//           Expanded(
+//             child: ListView.builder(
+//               itemCount: _imagePaths.length,
+//               itemBuilder: (context, index) {
+//                 return Card(
+//                   child: Image.file(File(_imagePaths[index])),
+//                 );
+//               },
+//             ),
+//           ),
+//           ElevatedButton(
+//             onPressed: _captureImage, // Directly call the capture function
+//             child: Text('Capture Image'),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+
+
+
+
+
+
+
+
+// // import 'package:firebase_core/firebase_core.dart';
+// import 'package:flutter/material.dart';
+// import 'package:practices/view/Fcm_page/ex.dart';
+// import 'package:practices/view/Fcm_page/fcm_notification.dart';
+// import 'package:practices/view/face_app/image_captcher.dart';
+// import 'package:practices/view/interview/bottom_nav.dart';
+//
+// void main() async {
+//   // WidgetsFlutterBinding.ensureInitialized();
+//   // await Firebase.initializeApp();
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       // home: FcmNotification(),
+//       home: ImageCaptureScreen(),
+//       // home:BottomNavBar(),
+//     );
+//   }
+// }
+
+
+
 
 
 
