@@ -91,6 +91,9 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:practices/view/profile/categories.dart';
 import 'package:practices/view/profile/productDetails.dart';
+import 'package:practices/view/profile/provider/cart_provider.dart';
+import 'package:practices/view/profile/provider/cart_screen.dart';
+import 'package:provider/provider.dart';
 import '../../models/products.dart';
 
 class Products extends StatefulWidget {
@@ -121,7 +124,7 @@ class _ProductsState extends State<Products> {
       List<Product> products = data.map((item) => Product.fromJson(item)).toList();
       setState(() {
         allProductsList = products;
-        filteredProducts = products; // Initially display all products
+        filteredProducts = products;
       });
       return products;
     } else {
@@ -143,16 +146,17 @@ class _ProductsState extends State<Products> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product List'),
-        bottom: PreferredSize(
+        title: PreferredSize(
           preferredSize: const Size.fromHeight(50.0),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: TextField(
               onChanged: _filterProducts,
-              decoration: const InputDecoration(
+              decoration:  InputDecoration(
                 hintText: 'Search for products...',
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius:BorderRadius.circular(15),
+                ),
                 filled: true,
                 fillColor: Colors.white,
               ),
@@ -160,7 +164,7 @@ class _ProductsState extends State<Products> {
           ),
         ),
       ),
-      body: Container(
+      body: Card(
         child: Column(
           children: [
             SizedBox(height: 10),
@@ -181,7 +185,7 @@ class _ProductsState extends State<Products> {
                         crossAxisCount: 2, // Number of columns
                         crossAxisSpacing: 10.0, // Space between columns
                         mainAxisSpacing: 10.0, // Space between rows
-                        childAspectRatio: 0.8, // Adjust this to change the item size
+                        childAspectRatio: 0.8,
                       ),
                       itemCount: filteredProducts.length,
                       itemBuilder: (context, index) {
@@ -229,14 +233,12 @@ class _ProductsState extends State<Products> {
                                       ),
                                       Positioned(
                                         top: 0,
-                                        right: 18,
+                                        right: 0,
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => ProductDetailPage(product: product),
-                                              ),
+                                            Provider.of<CartProvider>(context, listen: false).addToCart(product);
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                              SnackBar(content: Text('${product.title} added to cart!')),
                                             );
                                           },
                                           style: ElevatedButton.styleFrom(
@@ -257,7 +259,7 @@ class _ProductsState extends State<Products> {
                                         child: Column(
                                           children: [
                                             SizedBox(
-                                              height: 30, // Adjust this height to represent 50% of the desired height
+                                              // height: 30,
                                               child: ElevatedButton(
                                                 onPressed: () {
                                                   Navigator.push(
@@ -278,7 +280,6 @@ class _ProductsState extends State<Products> {
                                 ),
                               ),
                             ),
-
 
                           ),
 

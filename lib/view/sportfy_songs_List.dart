@@ -16,7 +16,7 @@ class _SongsListState extends State<SongsList> {
   @override
   void initState() {
     super.initState();
-    songs = fetchSongs(''); // Initialize with an empty search
+    songs = fetchSongs(''); 
   }
 
   Future<List<Songs>> fetchSongs(String query) async {
@@ -26,7 +26,7 @@ class _SongsListState extends State<SongsList> {
         'https://spotify23.p.rapidapi.com/search/',
         options: Options(
           headers: {
-            'X-RapidAPI-Key': 'a5a24d9647mshfe1a5565bbfa735p1d3852jsneb055f84cc73', // Replace with your actual API key
+            'X-RapidAPI-Key': 'a5a24d9647mshfe1a5565bbfa735p1d3852jsneb055f84cc73', 
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
           },
         ),
@@ -120,9 +120,9 @@ class _SongsListState extends State<SongsList> {
                 } else {
                   List<Songs> songsList = snapshot.data!;
                   return GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, // Number of columns
-                      childAspectRatio: 0.75, // Adjust for height vs width
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, 
+                      childAspectRatio: 0.75, 
                     ),
                     itemCount: songsList.length,
                     itemBuilder: (context, index) {

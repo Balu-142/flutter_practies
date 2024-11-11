@@ -1,90 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:http/http.dart' as http;
-// import 'dart:convert';
-//
-// import 'package:practices/view/example_screens/image_slider.dart';
-//
-// class VerifyOtpPage extends StatelessWidget {
-//   final String mobileNumber;
-//
-//   const VerifyOtpPage({Key? key, required this.mobileNumber}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-//     final TextEditingController _otpController = TextEditingController();
-//
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Center(child: Text("Verify OTP")),
-//       ),
-//       body: Form(
-//         key: _formKey,
-//         child: ListView(
-//           padding: const EdgeInsets.all(16.0),
-//           children: [
-//             TextFormField(
-//               controller: _otpController,
-//               decoration: InputDecoration(
-//                 border: OutlineInputBorder(),
-//                 labelText: "Enter OTP",
-//               ),
-//               validator: (value) {
-//                 if (value == null || value.isEmpty) {
-//                   return "Enter the OTP";
-//                 }
-//                 return null;
-//               },
-//               keyboardType: TextInputType.number,
-//             ),
-//             SizedBox(height: 30),
-//             ElevatedButton(
-//               onPressed: () async {
-//                 if (_formKey.currentState!.validate()) {
-//                   await verifyOtp(context, mobileNumber, _otpController.text);
-//                 }
-//               },
-//               child: Text("Verify"),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-//
-//   Future<void> verifyOtp(BuildContext context, String mobileNumber, String otp) async {
-//     final response = await http.post(
-//       Uri.parse('https://yourapi.com/verify-otp'), // Replace with your API endpoint
-//       headers: <String, String>{
-//         'Content-Type': 'application/json',
-//       },
-//       body: jsonEncode(<String, String>{
-//         'mobile_number': mobileNumber,
-//         'otp': otp,
-//       }),
-//     );
-//
-//     if (response.statusCode == 200) {
-//       // OTP verified successfully
-//       print("OTP verified for $mobileNumber");
-//       // Navigate to the next page (replace with your actual next page)
-//       Navigator.pushReplacement(
-//         context,
-//         MaterialPageRoute(builder: (context) => ImagePage()), // Replace NextPage with your target page
-//       );
-//     } else {
-//       // Handle error
-//       final errorResponse = jsonDecode(response.body);
-//       final errorMessage = errorResponse['message'] ?? 'Failed to verify OTP';
-//       print(errorMessage);
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         SnackBar(content: Text(errorMessage)),
-//       );
-//     }
-//   }
-// }
-
-
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -125,7 +38,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                     width: 40,
                     child: TextFormField(
                       controller: _otpControllers[index],
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: "",
                       ),
@@ -168,7 +81,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
 
   Future<void> verifyOtp(BuildContext context, String mobileNumber, String otp) async {
     final response = await http.post(
-      Uri.parse('https://yourapi.com/verify-otp'), // Replace with your API endpoint
+      Uri.parse('https://yourapi.com/verify-otp'), 
       headers: <String, String>{
         'Content-Type': 'application/json',
       },
@@ -179,15 +92,12 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
     );
 
     if (response.statusCode == 200) {
-      // OTP verified successfully
       print("OTP verified for $mobileNumber");
-      // Navigate to the next page (replace with your actual next page)
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => ImagePage()), // Replace NextPage with your target page
+        MaterialPageRoute(builder: (context) => ImagePage()), 
       );
     } else {
-      // Handle error
       final errorResponse = jsonDecode(response.body);
       final errorMessage = errorResponse['message'] ?? 'Failed to verify OTP';
       print(errorMessage);

@@ -33,12 +33,6 @@ class LoginForm extends StatelessWidget {
                   if (value == null || value.isEmpty) {
                     return 'Please enter an email';
                   }
-                  String pattern =
-                      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
-                  RegExp regex = RegExp(pattern);
-                  if (!regex.hasMatch(value)) {
-                    return 'Please enter a valid email address';
-                  }
                   return null;
                 },
               ),

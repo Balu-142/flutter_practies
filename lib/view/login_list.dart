@@ -20,7 +20,7 @@ class _LoginListState extends State<LoginList> {
 
   Future<List<Welcome>> fetchWelcome() async {
     final dio = Dio();
-    final response = await dio.get('http://localhost/yii-basic/basic/web/v1/login');
+    final response = await dio.get('https://gvfreshfoods.com/App/_api_v1/login_api.php');
 
     if (response.statusCode == 200) {
       List<dynamic> data = response.data;
@@ -41,10 +41,6 @@ class _LoginListState extends State<LoginList> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No data found'));
           } else {
             List<Welcome> welcomeList = snapshot.data!;
             return ListView.builder(

@@ -16,7 +16,6 @@ class MyCarousel extends StatelessWidget {
     'Item 10',
     'Item 11',
     'Item 12',
-    // Add more items as needed
   ];
 
   @override
@@ -34,7 +33,6 @@ class MyCarousel extends StatelessWidget {
             ),
             child: InkWell(
               onTap: () {
-                // Navigate to different pages based on the selected item
                 if (item == 'Women_Products') {
                   Navigator.push(
                     context,
@@ -50,7 +48,6 @@ class MyCarousel extends StatelessWidget {
                     ),
                   );
                 } else {
-                  // Handle other items accordingly
                   print('Tapped on $item');
                 }
               },
@@ -58,7 +55,7 @@ class MyCarousel extends StatelessWidget {
                 child: Text(
                   item,
                   style: TextStyle(fontSize: 16.0),
-                  textAlign: TextAlign.center, // Center the text
+                  textAlign: TextAlign.center, 
                 ),
               ),
             ),

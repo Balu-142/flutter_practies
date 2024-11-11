@@ -4,7 +4,7 @@ class SosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    String username = "your_actual_username"; // Replace with the actual username
+    String username = "name"; 
 
     return Scaffold(
       appBar: AppBar(
@@ -116,6 +116,7 @@ class SosPage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
+
           Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -133,7 +134,7 @@ class SosPage extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/image2.png'), // Update with your image path
+                  image: AssetImage('assets/image2.png'), 
                   fit: BoxFit.cover,
                 ),
               ),
@@ -141,7 +142,7 @@ class SosPage extends StatelessWidget {
                 children: [
                   Positioned.fill(
                     child: Container(
-                      color: Colors.black54, // Semi-transparent overlay for better text visibility
+                      color: Colors.black54, 
                     ),
                   ),
                   Positioned(
@@ -157,7 +158,7 @@ class SosPage extends StatelessWidget {
                     top: 8,
                     left: 8,
                     child: Text(
-                      username, // Use the actual username variable
+                      username, 
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -165,7 +166,8 @@ class SosPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Use Spacer to push the icons to the bottom
+                 
+
                   Positioned(
                     bottom: 8,
                     left: 0,
@@ -196,7 +198,7 @@ class SosPage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
-          // TabBar section
+
           DefaultTabController(
             length: 2,
             child: Column(
@@ -213,7 +215,7 @@ class SosPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    // VerticalDivider(),
+
                     Tab(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -227,7 +229,8 @@ class SosPage extends StatelessWidget {
                   ],
                   indicatorColor: Colors.green,
                 ),
-                Divider(),  // Add this line for a horizontal divider
+                Divider(), 
+                
                 SizedBox(
                   height: 100,
                   child: TabBarView(

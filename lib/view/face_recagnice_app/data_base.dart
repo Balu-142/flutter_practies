@@ -56,6 +56,7 @@
 
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'dart:io';
 
 class DatabaseHelper {
   static final DatabaseHelper _instance = DatabaseHelper._internal();
@@ -87,10 +88,21 @@ class DatabaseHelper {
     ''');
   }
 
-  Future<void> insertFace(String name, String imagePath, String timestamp) async {
+  Future<void> insertFace(String name, String imageFilePath, String timestamp) async {
     final db = await database;
 
-    //    String timestamp = DateTime.now() as String;
+    // Construct the full path for the image
+    String imagesDir = 'lib/view/face_recagnice_app/images';
+    String imagePath = join(imagesDir, '${DateTime.now().millisecondsSinceEpoch}.jpg');
+
+    // Ensure the directory exists
+    final directory = Directory(imagesDir);
+    if (!(await directory.exists())) {
+      await directory.create(recursive: true);
+    }
+
+    // Move the image to the desired path
+    await File(imageFilePath).copy(imagePath);
 
     String timestamp = DateTime.now().toIso8601String();
     await db.insert('faces', {
@@ -115,3 +127,5 @@ class DatabaseHelper {
     );
   }
 }
+
+

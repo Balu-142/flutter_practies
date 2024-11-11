@@ -9,10 +9,9 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: Colors.green.shade200,
         actions: [
           IconButton(
-            icon: Icon(Icons.settings), // Example action icon
+            icon: Icon(Icons.settings), 
             onPressed: () {
-              // Action when the icon is pressed
-              print("Settings pressed");
+                print("Settings pressed");
             },
           ),
         ],

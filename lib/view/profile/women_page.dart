@@ -116,11 +116,11 @@ class _Women_ProductsState extends State<Women_Products> {
     if (response.statusCode == 200) {
       List<dynamic> data = response.data;
       List<Product> products = data.map((item) => Product.fromJson(item))
-          .where((product) => product.category == 'women\'s clothing') // Filter for men's clothing
+          .where((product) => product.category == 'women\'s clothing') 
           .toList();
       setState(() {
         allProductsList = products;
-        filteredProducts = products; // Initially display all products
+        filteredProducts = products; 
       });
       return products;
     } else {

@@ -17,17 +17,17 @@ class _StackPageState extends State<StackPage> {
       body: ListView(
         children: [
           Container(
-            margin: const EdgeInsets.all(8.0), // Add margin for spacing
+            margin: const EdgeInsets.all(8.0), 
             decoration: BoxDecoration(
-              color: Colors.white, // Background color
-              borderRadius: BorderRadius.circular(12.0), // Border radius
+              color: Colors.white, 
+              borderRadius: BorderRadius.circular(12.0), 
               border: Border.all(
-                color: Colors.blue, // Border color
-                width: 2.0, // Border width
+                color: Colors.blue, 
+                width: 2.0, 
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(16.0), // Add padding for text layout
+              padding: const EdgeInsets.all(16.0), 
               child: Stack(
                 children: [
                   Column(
@@ -41,24 +41,23 @@ class _StackPageState extends State<StackPage> {
                             width: 50,
                             height: 50,
                           ),
-                          const SizedBox(width: 8.0), // Spacing between image and text
+                          const SizedBox(width: 8.0), 
                           const Text("Dr. Ashutosh Misra"),
                         ],
                       ),
-                      const SizedBox(height: 8.0), // Add spacing
+                      const SizedBox(height: 8.0), 
                     ],
                   ),
                   Positioned(
-                    bottom: -10.0, // Distance from the bottom
+                    bottom: -10.0, 
                     left: 0,
-                    right: MediaQuery.sizeOf(context).width* 0.8, // Make it stretch across the width
+                    right: MediaQuery.sizeOf(context).width* 0.8, 
                     child: ElevatedButton(
                       onPressed: () {
-                        // Add your button action here
                       },
                       child: const Text("Pay 200"),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red, // Button color
+                        backgroundColor: Colors.red, 
                       ),
                     ),
                   ),
@@ -67,50 +66,44 @@ class _StackPageState extends State<StackPage> {
             ),
           ),
 
-    Row(
+    const Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
-    Expanded(child: Divider(),), // Left line
+    Expanded(child: Divider(),), 
     Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-    child: Icon(Icons.notifications), // Your icon here
+    padding: EdgeInsets.symmetric(horizontal: 10.0),
+    child: Icon(Icons.notifications), 
     ),
-    Expanded(child: Divider()), // Right line
+    Expanded(child: Divider()), 
     ],
     ),
 
     Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-    Container(
-    width: MediaQuery.sizeOf(context).width *0.6, // Customize the width of the left line
+    SizedBox(
+    width: MediaQuery.sizeOf(context).width *0.6, 
     child: Divider(
-    thickness: 2, // Line thickness
-    color: Colors.black, // Line color
+    thickness: 2, 
+    color: Colors.black, 
     ),
     ),
-    Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-    child: Icon(Icons.notifications, size: 24), // Your icon here
+    const Padding(
+    padding: EdgeInsets.symmetric(horizontal: 10.0),
+    child: Icon(Icons.notifications, size: 24), 
     ),
-    Container(
-      width: MediaQuery.sizeOf(context).width *0.1, // Customize the width of the left line
+    SizedBox(
+      width: MediaQuery.sizeOf(context).width *0.1, 
     child: Divider(
-    thickness: 2, // Line thickness
-    color: Colors.black, // Line color
+    thickness: 2, 
+    color: Colors.black, 
     ),
     ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Icon(Icons.person_rounded, size: 24), // Your icon here
+      const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.0),
+        child: Icon(Icons.person_rounded, size: 24), 
       ),
-      // Container(
-      //   width: MediaQuery.sizeOf(context).width *0.1, // Customize the width of the left line
-      //   child: Divider(
-      //     thickness: 2, // Line thickness
-      //     color: Colors.black, // Line color
-      //   ),
-      // ),
+     
     ],
     ),
 

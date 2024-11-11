@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http; // Add this for HTTP requests
-import 'dart:convert'; // For JSON encoding/decoding
+import 'package:http/http.dart' as http; 
+import 'dart:convert'; 
 import 'package:practices/view/example_screens/image_slider.dart';
 
 class OtpPage extends StatelessWidget {
@@ -22,7 +22,7 @@ class OtpPage extends StatelessWidget {
           children: [
             TextFormField(
               controller: _mobileController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: "Mobile Number",
               ),
@@ -41,7 +41,6 @@ class OtpPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 if (_formKey.currentState!.validate()) {
-                  // Send OTP to the mobile number
                   await sendOtp(_mobileController.text);
                 }
               },
@@ -55,7 +54,7 @@ class OtpPage extends StatelessWidget {
 
   Future<void> sendOtp(String mobileNumber) async {
     final response = await http.post(
-      Uri.parse('https://yourapi.com/send-otp'), // Replace with your API endpoint
+      Uri.parse('https://yourapi.com/send-otp'),
       headers: <String, String>{
         'Content-Type': 'application/json',
       },
@@ -65,12 +64,8 @@ class OtpPage extends StatelessWidget {
     );
 
     if (response.statusCode == 200) {
-      // OTP sent successfully
       print("OTP sent to $mobileNumber");
-      // You can navigate to the OTP verification page here
-      // For example: Navigator.push(context, MaterialPageRoute(builder: (context) => VerifyOtpPage(mobileNumber: mobileNumber)));
     } else {
-      // Handle error
       print("Failed to send OTP");
     }
   }

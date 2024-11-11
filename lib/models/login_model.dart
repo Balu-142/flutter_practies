@@ -11,9 +11,9 @@ class Welcome {
 
   factory Welcome.fromJson(Map<String, dynamic> json) {
     return Welcome(
-      name: json['name'] ?? '',    // Default to empty string if key doesn't exist
-      mobile: json['mobile'] ?? '', // Default to empty string if key doesn't exist
-      email: json['email'] ?? '',   // Default to empty string if key doesn't exist
+      name: json['name'] ?? '',
+      mobile: json['mobile'] ?? '',
+      email: json['email'] ?? '',
     );
   }
 }

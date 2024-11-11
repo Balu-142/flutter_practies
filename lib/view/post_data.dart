@@ -13,7 +13,7 @@ class ApiService {
 
     try {
       var response = await dio.post(
-        'http://localhost/yii-basic/basic/web/v1/login/create',
+        'http://192.168.1.12/yii-basic/basic/web/v1/login/create',
         data: jsonEncode(data),
         options: Options(
           headers: {'Content-Type': 'application/json'},

@@ -111,14 +111,13 @@ class ImagePage extends StatefulWidget {
 class _ImagePageState extends State<ImagePage> {
   late ScrollController _scrollController;
   int _currentIndex = 0;
-  final int _itemCount = 9; // Number of images
+  final int _itemCount = 9; 
 
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
 
-    // Timer for automatic scrolling
     Timer.periodic(const Duration(seconds: 2), (Timer timer) {
       if (_currentIndex < _itemCount - 1) {
         _currentIndex++;
@@ -126,7 +125,7 @@ class _ImagePageState extends State<ImagePage> {
         _currentIndex = 0;
       }
       _scrollController.animateTo(
-        _currentIndex * 320.0, // Adjust based on card width + margins
+        _currentIndex * 320.0, 
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeIn,
       );
@@ -145,16 +144,16 @@ class _ImagePageState extends State<ImagePage> {
       appBar: AppBar(
         title: const Center(child: Text("Image Page")),
       ),
-      body: SizedBox( // Wrap the ListView in a SizedBox
-        height: 200, // Fixed height for the ListView
+      body: SizedBox( 
+        height: 200, 
         child: ListView.builder(
           controller: _scrollController,
-          scrollDirection: Axis.horizontal, // Set horizontal scroll direction
+          scrollDirection: Axis.horizontal, 
           itemCount: _itemCount,
           itemBuilder: (context, index) {
             return Container(
-              width: 300, // Fixed width for each card
-              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8), // Margin for spacing
+              width: 300, 
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
@@ -163,7 +162,7 @@ class _ImagePageState extends State<ImagePage> {
                   borderRadius: BorderRadius.circular(15),
                   child: Image.asset(
                     _getImagePath(index),
-                    fit: BoxFit.contain, // Use BoxFit.contain to fit the full image
+                    fit: BoxFit.contain, 
                   ),
                 ),
               ),
@@ -175,26 +174,25 @@ class _ImagePageState extends State<ImagePage> {
   }
 
   String _getImagePath(int index) {
-    // Add your image paths here
     switch (index) {
       case 0:
         return 'assets/side21.jpg';
       case 1:
         return 'assets/hart.png';
       case 2:
-        return 'assets/images/balu.png'; // Corrected path
+        return 'assets/images/balu.png'; 
       case 3:
         return 'assets/side21.jpg';
       case 4:
         return 'assets/hart.png';
       case 5:
-        return 'assets/images/balu.png'; // Corrected path
+        return 'assets/images/balu.png'; 
       case 6:
         return 'assets/side21.jpg';
       case 7:
         return 'assets/hart.png';
       case 8:
-        return 'assets/images/balu.png'; // Corrected path
+        return 'assets/images/balu.png'; 
       default:
         return 'assets/side21.jpg';
     }

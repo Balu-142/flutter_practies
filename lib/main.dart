@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:practices/view/example_screens/bottam_bar.dart';
+import 'package:practices/view/example_screens/card_page.dart';
+import 'package:practices/view/example_screens/login_list.dart';
+import 'package:practices/view/example_screens/stack/card%20_stack.dart';
+import 'package:practices/view/face_app/map_integreate.dart';
 import 'package:practices/view/face_recagnice_app/Regester_page.dart';
 import 'package:practices/view/face_recagnice_app/camera_page.dart';
 import 'package:practices/view/interview/bottom_navbar.dart';
+import 'package:practices/view/login_pages/login_page.dart';
+import 'package:practices/view/profile/provider/cart_provider.dart';
+import 'package:practices/view/profile/provider/order_provider.dart';
+import 'package:practices/view/profile/rezorpay_integration.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'view/face_recagnice_app/Button_page.dart';
@@ -13,38 +23,126 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Camera App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      // home: ButtonPage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+        create: (context) => CartProvider()),
+        ChangeNotifierProvider(
+            create: (context) => OrderProvider()),
+      ],
+      child: MaterialApp(
+        title: 'Camera App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        // home: ButtonPage(),
 
-      home: FutureBuilder<bool>(
-        future: _isRegistered(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasData && snapshot.data == true) {
-            return CameraScreen();
-          } else {
-            return Register_page();
-          }
-        },
+        // home:BotanNavbar(),
+        home:Profile_page(),
+
+        // FutureBuilder<bool>(
+        //   future: _isRegistered(),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.connectionState == ConnectionState.waiting) {
+        //       return Center(child: CircularProgressIndicator());
+        //     } else if (snapshot.hasData && snapshot.data == true) {
+        //       return CameraScreen();
+        //     } else {
+        //       return Register_page();
+        //     }
+        //   },
+        // ),
       ),
     );
   }
-  Future<bool> _isRegistered() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? name = prefs.getString('name');
-    return name != null;
-  }
+  // Future<bool> _isRegistered() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String? name = prefs.getString('name');
+  //   return name != null;
+  // }
 }
 
 
 
 
+// import 'package:flutter/material.dart';
+// import 'package:practices/view/post_data.dart';
+//
+// void main() {
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'API Data Submission',
+//       home: DataSubmissionPage(),
+//     );
+//   }
+// }
+//
+// class DataSubmissionPage extends StatefulWidget {
+//   @override
+//   _DataSubmissionPageState createState() => _DataSubmissionPageState();
+// }
+//
+// class _DataSubmissionPageState extends State<DataSubmissionPage> {
+//   final TextEditingController _nameController = TextEditingController();
+//   final TextEditingController _mobileController = TextEditingController();
+//   final TextEditingController _emailController = TextEditingController();
+//   String _responseMessage = '';
+//
+//   void _submitData() async {
+//     String name = _nameController.text;
+//     String mobile = _mobileController.text;
+//     String email = _emailController.text;
+//
+//     String response = await ApiService.sendData(name, mobile, email);
+//     setState(() {
+//       _responseMessage = response;
+//       print('response: $response');
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Submit Data'),
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Column(
+//           children: [
+//             TextField(
+//               controller: _nameController,
+//               decoration: InputDecoration(labelText: 'Name'),
+//             ),
+//             TextField(
+//               controller: _mobileController,
+//               decoration: InputDecoration(labelText: 'Mobile'),
+//               keyboardType: TextInputType.phone,
+//             ),
+//             TextField(
+//               controller: _emailController,
+//               decoration: InputDecoration(labelText: 'Email'),
+//               keyboardType: TextInputType.emailAddress,
+//             ),
+//             SizedBox(height: 20),
+//             ElevatedButton(
+//               onPressed: _submitData,
+//               child: Text('Submit'),
+//             ),
+//             SizedBox(height: 20),
+//             Text(_responseMessage),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 
 
